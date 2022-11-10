@@ -1,0 +1,41 @@
+.slider {
+  width: 100%;
+  height: 100%;
+
+  .slider-item {
+    height: 100%;
+    .slider-img {
+      width: 100%;
+      height: 415.5px;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+  }
+  .slick-dots {
+    bottom: 0;
+  }
+
+  .test {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .custom-indicator li {
+    padding-top: 12px;
+    padding-left: 10px;
+    font-size: 15px;
+    width: 25%;
+    height: 40px;
+    margin: 0;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid hsla(0, 0%, 100%, 0.4);
+    border-bottom: none;
+    border-top: none;
+    color: #fff;
+  }
+  .custom-indicator li.slick-active {
+    background: #ed4259;
+    font-weight: 500;
+  }
+}

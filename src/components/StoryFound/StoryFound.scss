@@ -1,0 +1,99 @@
+.storyFound-wrapper {
+  position: relative;
+  display: flex;
+  //justify-content: space-between;
+  flex-direction: row;
+  padding: 24px 15px;
+  border-bottom: 1px solid #e6e6e6;
+  width: 100%;
+  min-width: 460px;
+  .storyFound-img {
+    margin-right: 16px;
+    img {
+      //width: 100%;
+      width: 102px;
+      height: 136px;
+      -webkit-transform: scale(1);
+      transform: scale(1);
+      -webkit-transition: 0.3s ease-in-out;
+      transition: 0.3s ease-in-out; 
+      &:hover {
+        -webkit-transform: scale(1.15);
+        transform: scale(1.15);
+        cursor: pointer;
+      }
+    }
+  }
+  .storyFound-content {
+    min-width: 73%;
+    position: relative;
+    .storyFound-name {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: normal;
+      -webkit-line-clamp: 2;
+      min-height: 36px;
+      width: 100%;
+    }
+    .storyFound-description {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 3;
+      width: 100%;
+      //max-width: 320px;
+      font-size: 15px;
+      color: #666;
+      margin-bottom: 9px;
+      font-weight: 300;
+    }
+    .storyFound-author {
+      font-size: 14px;
+      color: #333;
+      margin-bottom: 4px;
+      .author-icon {
+        margin-right: 8px;
+        height: 15px;
+        width: 15px;
+      }
+    }
+    .storyFound-chap {
+      font-size: 14px;
+      color: #333;
+      .chap-icon {
+        margin-right: 8px;
+        height: 15px;
+        width: 15px;
+      }
+    }
+    .storyFound-inf {
+      position: absolute;
+      bottom: 2px;
+      right: 0;
+      font-size: 12.5px;
+      display: flex;
+      .storyFound-inf-genre {
+        color: #ed4259;
+        border: 1px solid #ed4259;
+        padding: 4px 8px;
+        margin-right: 4px;
+        border-radius: 3px;
+      }
+      .storyFound-inf-comp {
+        color: #333;
+        border: 1px solid #333;
+        padding: 4px 8px;
+        border-radius: 3px;
+      }
+    }
+  }
+  .storyFound-mark {
+    position: absolute;
+  }
+}

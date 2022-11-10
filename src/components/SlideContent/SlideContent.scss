@@ -1,0 +1,98 @@
+.outstanding-slide {
+  margin-right: 30px;
+  width: 250px;
+  .outstanding-slide-text {
+    border-bottom: 1px solid black;
+    font-weight: 500;
+    font-size: 20px;
+    padding-bottom: 8px;
+  }
+  .out-standing-work {
+    padding: 24px 0 12px 0;
+    background: #f7f5f0;
+    height: 395px;
+    .slide-text-active {
+      margin-top: 20px;
+      text-align: center;
+      .slide-text-name {
+        margin-bottom: 10px;
+        font-weight: 500;
+        font-size: 18px;
+      }
+      .slide-text-author {
+        color: #bf2c24;
+        padding: 3px 0 5px;
+      }
+      .slide-text-doc {
+        font-weight: 600;
+        font-size: 20px;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+      .slide-text-doc::after {
+        content: "Đọc";
+        font-size: 15px;
+        font-weight: 400;
+        margin-left: 8px;
+      }
+      .slide-text-intro {
+        color: #666;
+        font-size: 15px;
+        text-align: left;
+        margin: 0 15px;
+        margin-bottom: 10px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        -webkit-line-clamp: 4;
+        min-height: 72px;
+        line-height: 1.2;
+        text-indent: 10px;
+      }
+      
+    }
+    .btn-click-doc {
+        background: #bf2c24;
+        border: 1px solid #bf2c24;
+        border-radius: 15px;
+        color: #fff;
+        height: 28px;
+        width: 98px;
+        position: relative;
+        left: 75px;
+        bottom: -12px;
+      }
+  }
+
+  .slide-active {
+    transition-duration: 0ms;
+    transition: all 0.2s ease-in-out;
+    margin-top: 0px;
+    img {
+      width: 100%;
+    }
+  }
+
+  .slide-next {
+    opacity: 0.5;
+    transition-duration: 0ms;
+    transform: translate3d(0px, 0px, -100px) rotateX(20deg) rotateY(40deg);
+    margin-top: 10px;
+    z-index: 0;
+    img {
+      width: 100%;
+    }
+  }
+  .slide-pre {
+    opacity: 0.5;
+    transition-duration: 0ms;
+    transform: translate3d(0px, 0px, -100px) rotateX(-20deg) rotateY(40deg);
+    margin-top: 10px;
+    z-index: 0;
+    img {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,40 @@
+.user-account-wrapper {
+  background-color: #fff;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  border-radius: 5px;
+  border: 1px solid #e6e6e6;
+
+  .user-account-img {
+    height: 80px;
+    width: 80px;
+    border-radius: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+  }
+  .user-account-name {
+    word-wrap: break-word;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding-top: 10px;
+  }
+  .user-account-select {
+    padding: 10px 0;
+    .user-account-item {
+      font-size: 15px;
+      padding: 10px 26px;
+      font-weight: 400;
+      .user-icon {
+        margin-right: 10px;
+      }
+
+      &:hover {
+        background-color: #e6e6e6;
+        cursor: pointer;
+      }
+    }
+  }
+}

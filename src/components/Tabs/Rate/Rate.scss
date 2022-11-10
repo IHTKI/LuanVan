@@ -1,0 +1,179 @@
+.rate-wrapper {
+  display: flex;
+  .rate-left {
+    width: calc(100% * (8 / 12));
+    .rate-left-box {
+      border-radius: 8px;
+      margin-right: 15px;
+      border: 2px solid #f7f5f0;
+      margin-bottom: 16px;
+      .box-rating {
+        padding: 16px;
+        border: 2px solid #f7f5f0;
+        background-color: #f7f5f0 !important;
+        border-radius: 8px;
+        //margin-bottom: 16px;
+        .box-rating-li {
+          display: flex;
+          padding: 8px 0;
+          justify-content: center;
+          align-items: center;
+          ._content {
+            width: calc(100% * (3 / 12));
+            //padding: 0 15px ;
+            font-size: 15px;
+            font-weight: 500;
+            color: #b78a28;
+          }
+          ._range {
+            width: calc(100% * (8 / 12));
+            -webkit-appearance: none;
+            height: 4px;
+            background: rgba(183, 138, 40, 0.2);
+            &::-webkit-slider-thumb {
+              -webkit-appearance: none;
+              appearance: none;
+              height: 20px;
+              width: 20px;
+              background-color: #fff;
+              border: 2px solid #b78a28;
+              border-radius: 50%;
+              cursor: pointer;
+            }
+          }
+          ._point {
+            padding: 0 15px;
+            font-size: 18px;
+            margin-left: 10px;
+            font-weight: 500;
+            text-align: center;
+            color: #b78a28;
+            width: calc(100% * (1 / 12));
+          }
+        }
+      }
+      .box-textBox {
+        //padding: 16px;
+        position: relative;
+        ._textArea {
+          border: #b78a28;
+          padding: 16px 65px 16px 16px;
+          max-width: 100%;
+          width: 100%;
+          min-height: 100px;
+          height: auto;
+          line-height: 1.5;
+          font-size: 15px;
+          outline: none;
+          height: 100%;
+          resize: none;
+          &::-webkit-scrollbar {
+            width: 0;
+          }
+        }
+        ._btnSend {
+          position: absolute;
+          right: 10px;
+          bottom: 10px;
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          background-color: #b78a28;
+          color: #fff;
+          border: none;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .rate-left-ul {
+      margin-right: 16px;
+      .rate-option {
+        margin-bottom: 16px;
+        display: flex;
+        justify-content: flex-end;
+        //margin-right: 16px;
+        select {
+          //@at-root: 200px;
+          padding: 6px 28px 6px 12px;
+          background-color: #fff;
+          border: 1px solid #e6e6e6;
+          font-size: 15px;
+          font-weight: 400;
+          line-height: 1.5;
+        }
+      }
+    }
+  }
+  .rate-right {
+    width: calc(100% * (4 / 12));
+    .rate-right-ul {
+      background-color: #f7f5f0;
+      padding: 16px;
+      border-radius: 8px;
+      line-height: 1.5;
+      .rate-right-header {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+        ._text {
+          font-size: 16px;
+          font-weight: 500;
+          color: #b78a28;
+        }
+        ._star {
+          color: #ffebaf;
+        }
+        ._point {
+          width: 5%;
+          color: #b78a28;
+          font-weight: 600;
+          font-size: 16px;
+        }
+      }
+      .rate-right-li {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+        ._text {
+          font-size: 15px;
+          font-weight: 400;
+          color: #b78a28;
+          width: 40%;
+        }
+        ._star {
+          color: #ffebaf;
+          margin-left: 50px;
+        }
+        ._point {
+          width: 5%;
+          color: #b78a28;
+        }
+      }
+    }
+    .rate-right-note {
+      margin-top: 24px;
+      padding: 16px;
+      background-color: #f7f5f0;
+      border-radius: 8px;
+      .note-header {
+        font-size: 16px;
+        font-weight: 500;
+        color: #b78a28;
+        line-height: 1.5;
+        margin-bottom: 24px;
+      }
+      .note-li {
+        line-height: 1.5;
+        margin-bottom: 16px;
+        font-size: 15px;
+        font-weight: 400;
+        color: #b78a28;
+      }
+    }
+  }
+}
+.star-active {
+  color: #ffc000;
+}

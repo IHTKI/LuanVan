@@ -1,0 +1,113 @@
+.story-wrapper {
+  width: 49%;
+  display: flex;
+  justify-content: space-around;
+  padding: 25px 20px 25px 20px;
+  border-radius: 5px;
+  //padding-bottom: 25px;
+  margin-bottom: 10px;
+  border: 1px solid #cccccc;
+  background-color: white;
+  position: relative;
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+
+  &:hover {
+    transition: all 0.2s ease-out;
+    box-shadow: 0px 5px 8px rgba(38, 38, 38, 0.4);
+    top: -4px;
+    cursor: pointer;
+  }
+
+  .story-mark {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 40px;
+  }
+  .story-img {
+    margin-right: 18px;
+
+    img {
+      width: 116px;
+
+      //border: 1px solid #3e3d43;
+      //border-image: linear-gradient(red, blue);
+      //border-image-slice: 1;
+    }
+  }
+  .story-content {
+    position: relative;
+
+    .story-name {
+      font-size: 17px;
+      max-width: 360px;
+      font-weight: 500;
+      margin-bottom: 10px;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: normal;
+      -webkit-line-clamp: 2;
+    }
+    .story-description {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: normal;
+      -webkit-line-clamp: 3;
+      line-height: 22px;
+      color: #666;
+      margin-bottom: 12px;
+      font-size: 15.5px;
+    }
+    .story-author {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: normal;
+      -webkit-line-clamp: 1;
+      max-width: 260px;
+      line-height: 22px;
+      font-weight: 400;
+      font-size: 15.5px;
+      margin-bottom: 12px;
+      .author-icon {
+        height: 20px;
+        width: 20px;
+        margin-right: 10px;
+      }
+    }
+    .story-chap {
+      font-size: 15px;
+      .chap-icon {
+        height: 16px;
+        width: 16px;
+        margin-right: 10px;
+      }
+    }
+    .story-inf {
+      position: absolute;
+      right: 10px;
+      bottom: 0;
+      text-align: center;
+      font-size: 14px;
+      .story-inf-genre {
+        background-color: #ed4259;
+        color: #fff;
+        margin-bottom: 5px;
+        border-radius: 5px;
+        padding: 6px 12px;
+      }
+      .story-inf-comp {
+        background-color: #3e3d43;
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 5px;
+      }
+    }
+  }
+}

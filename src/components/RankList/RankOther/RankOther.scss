@@ -1,0 +1,31 @@
+.rank-top-remaining {
+    border-bottom: 1px solid #eee;
+    ._rank-top-other {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      color: #666;
+      font-weight: 400;
+      padding: 8px 0;
+      img {
+        height: 30px;
+        width: 30px;
+        margin-right: 5px;
+      }
+      ._rank-top-name {
+        padding-left: 6px;
+        width: 75%;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        -webkit-line-clamp: 1;
+        margin-right: 10px;
+      }
+      .other-img {
+        height: 15px;
+        width: 15px;
+      }
+    }
+  }

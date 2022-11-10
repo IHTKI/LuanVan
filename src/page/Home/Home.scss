@@ -1,0 +1,279 @@
+.home {
+  .home-wrapper {
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 450px;
+    .home-img {
+      background-image: url("../../assets/background.jpg");
+      background-position: 50% 0;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: absolute;
+      z-index: -1000;
+      height: 288px;
+      top: 122px;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+    }
+    .home-first {
+      height: 415px;
+      width: 920px;
+      background-color: #fff;
+      margin-top: 5px;
+      position: absolute;
+      right: 350px;
+      z-index: 0;
+    }
+  }
+  // phần bảng xếp hạng
+  .home-two {
+    top: 10px;
+    position: relative;
+    .home-second {
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      width: 1200px;
+      .home-nominate {
+        //background-color: #fff;
+        //border-radius: 10px;
+        //box-shadow: 0 1px 4px rgb(21 26 48 / 30%);
+        padding: 20px;
+        .cross {
+          border: 2px solid black;
+          margin-bottom: 40px;
+        }
+        .home-nominate-img {
+          position: absolute;
+          height: 70px;
+          left: 26px;
+          top: 10px;
+        }
+        .home-nominate-text {
+          font-weight: 500;
+          font-size: 20px;
+          text-align: left;
+          padding-top: 10px;
+          //padding-right: 30px;
+          margin-bottom: 15px;
+          margin-left: 90px;
+          margin-top: 0px;
+          .text-describe {
+            margin-top: 5px;
+            font-size: 15px;
+            color: rgb(156, 156, 156);
+          }
+        }
+        .home-nominate-story {
+          margin-top: 10px;
+          display: flex;
+          justify-content: space-around;
+          flex-wrap: wrap;
+        }
+      }
+    }
+    .home-three {
+      .home-rank {
+        position: relative;
+        width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 15px;
+        .home-rank-contain {
+          padding: 20px;
+          .cross {
+            border: 2px solid black;
+            margin-bottom: 40px;
+          }
+          .rank-text {
+            font-weight: 500;
+            font-size: 20px;
+            text-align: left;
+            padding-top: 10px;
+            //padding-right: 30px;
+            margin-bottom: 15px;
+            margin-left: 90px;
+            margin-top: 0px;
+            .rank-text-img {
+              position: absolute;
+              height: 70px;
+              left: 26px;
+              top: 10px;
+            }
+            .rank-text-describe {
+              margin-top: 5px;
+              font-size: 15px;
+              color: rgb(156, 156, 156);
+            }
+          }
+        }
+        .home-rank-table {
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+    }
+    //Phần truyện nổi bật và truyện mới
+    .home-four {
+      margin-top: 30px;
+      .home-outstanding {
+        position: relative;
+        width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 15px;
+        padding: 20px 0;
+        .cross {
+          border: 2px solid black;
+          margin-bottom: 40px;
+        }
+        .outstanding-text {
+          font-weight: 500;
+          font-size: 20px;
+          text-align: left;
+          padding-top: 10px;
+          padding-left: 20px;
+          //padding-right: 30px;
+          margin-bottom: 15px;
+          margin-left: 90px;
+          margin-top: 0px;
+          .outstanding-text-img {
+            position: absolute;
+            height: 70px;
+            left: 26px;
+            top: 10px;
+          }
+          .outstanding-text-describe {
+            margin-top: 5px;
+            font-size: 15px;
+            color: rgb(156, 156, 156);
+          }
+        }
+        .home-outstanding-part1,
+        .home-outstanding-part2 {
+          display: flex;
+          .outstanding-content {
+            width: calc(1200px - 280px);
+          }
+        }
+        .outstanding-content2 {
+          margin-top: 31px;
+          border-top: 1px solid black;
+          width: 100%;
+          padding: 20px 0 0 0;
+          .item {
+            width: 50%;
+            height: 50%;
+            display: inline-block;
+          }
+        }
+      }
+    }
+    .home-five {
+      //background-color: #f2f2f2;
+      height: 330px;
+      .home-suggest {
+        border-top: 1px solid #ccc;
+        width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 40px;
+        display: flex;
+        .home-suggest-header {
+          width: 200px;
+          background: #f7f6f2;
+          border: 1px solid #f7f6f2;
+          color: #ed4259;
+          font-size: 18px;
+          line-height: 21px;
+          display: flex;
+          flex-direction: column;
+          text-align: center;
+          padding-top: 20px;
+          align-items: center;
+          font-weight: 500;
+          .suggest-icon {
+            height: 80px;
+            width: 80px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+          }
+          span {
+            color: black;
+            margin-top: 15px;
+            width: 80%;
+            margin-bottom: 15px;
+          }
+          button {
+            color: #3f5a93;
+            border: 1px solid #3f5a93;
+            padding: 10px 20px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+          }
+        }
+        .home-suggest-contain {
+          .suggest-item {
+            display: inline-block;
+            width: calc((1200px - 200px) / 5);
+            height: 100%;
+            text-align: center;
+            .suggest-item-img {
+              margin: 20px auto 10px;
+              width: 100px;
+              height: auto;
+              img {
+                height: 100%;
+                width: 100%;
+              }
+            }
+            .suggest-item-name {
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: normal;
+              -webkit-line-clamp: 2;
+              padding: 0 8px;
+              font-weight: 500;
+              height: 36px;
+            }
+            .suggest-item-author {
+              color: red;
+              font-weight: 500;
+            }
+            button {
+              padding: 10px;
+              color: #3f5a93;
+              border: 1px solid #3f5a93;
+              background-color: #fff;
+              border-radius: 20px;
+              width: 100px;
+              margin-top: 10px;
+            }
+            &:hover {
+              box-shadow: 0 5px 16px #d9d4c7;
+            }
+          }
+        }
+      }
+    }
+    .chatbot {
+      position: fixed;
+      bottom: 100px;
+      right: 100px;
+      width: 100px;
+      border: 3px solid #73ad21;
+    }
+  }
+}
+.odd {
+  background: #f7f6f2;
+  border: 1px solid #f7f6f2;
+}
+.even {
+  background: #fcfcfa;
+  border: 1px solid #fcfcfa;
+}

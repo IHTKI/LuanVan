@@ -1,0 +1,101 @@
+.sidebar-wrapper {
+  background-color: #3e3d43;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  .sidebar-container {
+    color: #fff;
+    font-weight: 400;
+    font-size: 15px;
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .sidebar-container-collumn {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+
+      .sidebar-container-category {
+        width: 216px;
+        height: 38px;
+        border: none;
+        background-color: #252428;
+        color: #fff;
+        .sidebar-icon {
+          height: 18px;
+          width: 18px;
+        }
+        span {
+          margin-left: 10px;
+        }
+        &:hover {
+          background-color: #252428;
+        }
+      }
+      .sidebar-container-filter,
+      .sidebar-container-up,
+      .sidebar-container-rank {
+        width: 150px;
+        text-align: center;
+        height: 38px;
+      }
+      .sidebar-container-login {
+        width: 150px;
+        height: 38px;
+        text-align: center;
+
+        .sidebar-icon {
+          height: 18px;
+          width: 18px;
+        }
+        span {
+          margin-top: 5px;
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}
+
+// display flex
+.display-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Hiệu ứng hover trên thanh sidebar
+.hover-eff {
+  &:hover {
+    cursor: pointer;
+    background-color: #252428;
+    border-bottom: 2px solid #252428;
+    border-top: 2px solid #ed4259;
+    transition: none;
+  }
+}
+
+// Tippy result category
+.category-result {
+  border: 1px solid #e6e6e6;
+  border-top: none;
+  width: 272px;
+  margin-top: -10px;
+}
+
+// tippy user result
+.user-result {
+  border-top: none;
+  width: 200px;
+  margin-top: -10px;
+  z-index: 10000;
+}
+
+// background 
+.bg-spe {
+  background-color: #252428;
+}

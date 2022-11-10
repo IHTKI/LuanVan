@@ -1,0 +1,101 @@
+.filter-story-wrapper {
+  .filter-story-contain {
+    height: 1200px;
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: row;
+    .filter-left {
+      width: 20%;
+      .filter-left-title {
+        background: #f7f6f2;
+        padding: 12px 15px;
+        font-size: 15px;
+        font-weight: 500;
+      }
+    }
+    .filter-right {
+      width: 80%;
+      margin-left: 10px;
+
+      .filter-right-title {
+        background: #f7f6f2;
+
+        margin-left: 15px;
+        font-size: 15px;
+        font-weight: 500;
+        ._select {
+          .selected {
+            color: #ed4259;
+            background-color: #eee;
+            pointer-events: none;
+          }
+
+          ._select-item {
+            margin-left: 15px;
+            display: inline-block;
+            margin-right: 20px;
+            line-height: 2.75;
+            position: relative;
+            &:hover {
+              color: #ed4259;
+              cursor: pointer;
+            }
+            ._icon {
+              margin-left: 8px;
+            }
+          }
+          ._select-item-spe {
+            margin-left: 15px;
+            display: inline-block;
+            margin-right: 20px;
+            line-height: 2.75;
+            position: relative;
+            &:hover .test {
+              display: block;
+            }
+            ._icon {
+              margin-left: 8px;
+            }
+            .test {
+              display: none;
+              position: absolute;
+              top: 40px;
+              left: -15px;
+              z-index: 1;
+              width: 170px;
+              background-color: #fff;
+              border: 1px solid #eee;
+              font-size: 15px !important;
+              font-weight: 400 !important;
+              .test-item {
+                padding: 0px 20px;
+                color: black;
+                &:hover {
+                  color: #ed4259;
+                  cursor: pointer;
+                }
+              }
+            }
+          }
+          .total {
+            float: right;
+            font-weight: 400 !important;
+            color: #a6a6a6;
+            font-size: 14px;
+            margin-top: 12px;
+            margin-right: 10px;
+            span {
+              color: black;
+              font-size: 15px;
+              font-weight: 500;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+.menu-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  .menu-item {
+    width: 50%;
+    height: 60px;
+
+    .menu-contain {
+      height: 100%;
+      padding-left: 12px;
+      padding-top: 17px;
+      display: flex;
+      img {
+        height: 30px;
+        margin: 2px 8px 0 0;
+        transition: margin 0.3s ease-out;
+        width: 30px;
+      }
+      &:hover img {
+        filter: invert(31%) sepia(47%) saturate(2809%) hue-rotate(328deg)
+          brightness(100%) contrast(86%);
+        margin: 2px 11px 0 -3px;
+      }
+      &:hover {
+        color: #ed4259;
+        cursor: pointer;
+      }
+      .item-category {
+        font-size: 14px;
+        display: block;
+        white-space: nowrap;
+        font-weight: 500;
+      }
+      .item-count {
+        font-size: 12px;
+      }
+    }
+  }
+}
+.bg-even {
+  background-color: #f7f6f2;
+}
+.bg-odd {
+  background-color: #fcfcfa;
+}

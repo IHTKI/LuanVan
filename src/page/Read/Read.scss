@@ -1,0 +1,100 @@
+.read-wrapper {
+  .read-container {
+    //height: 1000px;
+    padding-top: 50px;
+    position: relative;
+    margin-bottom: 50px;
+    .read-main {
+      width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      //border: 2px double #d8d8d8;
+      //border-radius: 10px;
+      padding: 24px 52px;
+      position: relative;
+      ._test {
+        position: absolute;
+        top: 0;
+        //@at-root: auto;
+        left: 28.5%;
+      }
+      .read-btn {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        //border: 1px solid #666;
+        //width: 50%;
+        ._btn {
+          background-color: #fff;
+          font-size: 18px;
+          border: none;
+          //justify-content: space-between;
+          align-items: center;
+          justify-content: center;
+          display: flex;
+          margin: 0 100px;
+          padding: 12px;
+          span {
+            font-size: 18px;
+            margin: 0 12px;
+          }
+        }
+      }
+      ._start {
+        text-align: center;
+        margin-top: 40px;
+        //filter: invert(31%) sepia(47%) saturate(2809%) hue-rotate(328deg) brightness(100%) contrast(86%);
+      }
+      ._end {
+        margin-top: 10px;
+        text-align: center;
+        img {
+          margin-left: -28px;
+        }
+      }
+      .read-text {
+        font-size: 26px;
+        padding: 50px 0;
+        line-height: 180%;
+        text-align: left;
+        word-wrap: break-word;
+        font-family: "Palatino Linotype", "Arial", "Times New Roman", sans-serif;
+      }
+      .read-chapName {
+        text-align: center;
+        font-size: 24px;
+        font-weight: 600;
+        padding-bottom: 24px;
+        //border-bottom: 2px solid #d8d8d8;
+        font-family: "Palatino Linotype", "Arial", "Times New Roman", sans-serif;
+        margin-top: 40px;
+        span {
+          font-size: 20px;
+          font-weight: 400;
+        }
+      }
+      .read-information {
+        padding: 16px 24px;
+        display: flex;
+        color: #666;
+        justify-content: right;
+        .inf-li {
+          margin-right: 30px;
+          font-size: 18px;
+          ._icon {
+            margin-right: 10px;
+          }
+          &:hover {
+            cursor: pointer;
+            color: #ed4259;
+          }
+        }
+      }
+    }
+  }
+}
+.read-setting {
+  position: fixed;
+  right: 300px;
+  top: 200px;
+}

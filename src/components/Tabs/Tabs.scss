@@ -1,0 +1,30 @@
+.activity-tabs {
+  color: #ed4259;
+  border-bottom: 4px solid #ed4259;
+}
+.activity-contain {
+  display: block;
+}
+
+.tabs-wrapper {
+  .bloc-tabs {
+    display: flex;
+    border-bottom: 1px solid #e6e6e6;
+    margin-bottom: 24px;
+    .tab {
+      margin-right: 50px;
+      padding: 16px 0;
+      font-size: 20px;
+      font-weight: 500;
+      &:hover {
+        cursor: pointer;
+        color: #ed4259;
+      }
+    }
+  }
+  .contain-tabs {
+    .tab-hide {
+      display: none;
+    }
+  }
+}

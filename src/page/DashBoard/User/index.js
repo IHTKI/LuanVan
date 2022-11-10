@@ -72,7 +72,7 @@ export default function User() {
             }
             onClick={() => setSelected(1)}
           >
-            <MdOutlineSettings className="_icon" />
+
             <span>Setting</span>
           </div>
           <div className="admin-controller-btn">

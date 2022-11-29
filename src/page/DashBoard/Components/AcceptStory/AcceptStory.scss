@@ -1,0 +1,19 @@
+.acceptStory__wrap {
+  background-color: #f4f5f7;
+  padding: 24px;
+  height: 100%;
+
+  .acceptStory__header {
+    padding: 24px;
+    span {
+      font-size: 22px;
+      font-weight: 500;
+    }
+    p {
+      font-size: 14px;
+    }
+  }
+  .acceptStory__contain {
+    padding: 24px;
+  }
+}

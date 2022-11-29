@@ -9,13 +9,20 @@ import {
   faBookBookmark
 } from "@fortawesome/free-solid-svg-icons";
 import Wrapper from "../Wrapper";
+import { useNavigate } from "react-router-dom";
+
 
 
 export default function Header() {
+  const navigation = useNavigate();
+
+  const handleClick = ()=>{
+    navigation("/");
+  } 
   return (
     <header className="wrapper">
       <div className="inner">
-        <div className="logo">
+        <div className="logo" onClick={handleClick}>
           <img src={logo} alt="some value" />
         </div>
 

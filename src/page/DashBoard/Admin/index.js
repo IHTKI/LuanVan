@@ -11,83 +11,19 @@ import {
 import { HiUsers, HiOutlineBell, HiBellAlert } from "react-icons/hi";
 import Setting from "../Components/Setting";
 import Users from "../Components/Users";
-
+import { useNavigate } from "react-router-dom";
+import AcceptStory from "../Components/AcceptStory";
+import Book from "../Components/Book";
 export default function Admin() {
-  const [selected, setSelected] = useState(2);
-  const datas = [
-    {
-      id: "A1B2",
-      name: "Khiee Sieu Dejp Zai",
-      email: "ahihihaisdjasjd",
-      role: "converter",
-    },
-    {
-      id: "4567",
-      name: "Khiee Sieu Dejp Zai",
-      email: "ahihihaisdjasjd",
-      role: "converter",
-    },
-    {
-      id: "4567",
-      name: "Khiee Sieu Dejp Zai",
-      email: "ahihihaisdjasjd",
-      role: "converter",
-    },
-    {
-      id: "4567",
-      name: "Khiee Sieu Dejp Zai",
-      email: "ahihihaisdjasjd",
-      role: "converter",
-    },
-    {
-      id: "4567",
-      name: "Khiee Sieu Dejp Zai",
-      email: "ahihihaisdjasjd",
-      role: "converter",
-    },
-    {
-      id: "4567",
-      name: "Khiee Sieu Dejp Zai",
-      email: "ahihihaisdjasjd",
-      role: "converter",
-    },
-    {
-      id: "4567",
-      name: "Khiee Sieu Dejp Zai",
-      email: "ahihihaisdjasjd",
-      role: "converter",
-    },
-    {
-      id: "4567",
-      name: "Khiee Sieu Dejp Zai",
-      email: "ahihihaisdjasjd",
-      role: "converter",
-    },
-    {
-      id: "4567",
-      name: "Khiee Sieu Dejp Zai",
-      email: "ahihihaisdjasjd",
-      role: "converter",
-    },
-    {
-      id: "4567",
-      name: "Khiee Sieu Dejp Zai",
-      email: "ahihihaisdjasjd",
-      role: "converter",
-    },
-    {
-      id: "4567",
-      name: "Khiee Sieu Dejp Zai",
-      email: "ahihihaisdjasjd",
-      role: "converter",
-    },
-    {
-      id: "4567",
-      name: "Khiee Sieu Dejp Zai",
-      email: "ahihihaisdjasjd",
-      role: "converter",
-    },
-  ];
+  const [selected, setSelected] = useState(3);
+  const navigation = useNavigate();
+
+  
+  console.log(localStorage.getItem("managerId"));
+  const handleLogOut = () => {
+    localStorage.removeItem("managerId");
+    navigation("/login");
+  };
   return (
     <div className="admin-wrap">
       <div className="admin-controller">
@@ -100,35 +36,29 @@ export default function Admin() {
             <MdOutlineDashboard className="_icon" />
             <span>Dashboard</span>
           </div>
-          <div className="admin-controller-li ">
+          <div
+            className={
+              selected === 3
+                ? "admin-controller-li is_selected"
+                : "admin-controller-li"
+            }
+            onClick={() => setSelected(3)}
+          >
             <MdCollectionsBookmark className="_icon" />
-            <span>Book</span>
+            <span>Tác Phẩm Mới</span>
           </div>
-          <div className="admin-controller-li ">
-            <MdFormatListBulleted className="_icon" />
-            <span>Category</span>
-          </div>
-          <div className={
+
+          <div
+            className={
               selected === 2
                 ? "admin-controller-li is_selected"
                 : "admin-controller-li"
             }
-            onClick={()=>setSelected(2)}>
-            <HiUsers className="_icon" />
-            <span>User</span>
-          </div>
-          <div
-            className={
-              selected === 1
-                ? "admin-controller-li is_selected"
-                : "admin-controller-li"
-            }
-            onClick={()=>setSelected(1)}
           >
-            <MdOutlineSettings className="_icon" />
-            <span>Setting</span>
+            <HiUsers className="_icon" />
+            <span>Người Dùng</span>
           </div>
-          <div className="admin-controller-btn">
+          <div className="admin-controller-btn" onClick={handleLogOut}>
             <MdLogout className="_icon" />
             <span>Log Out</span>
           </div>
@@ -145,8 +75,8 @@ export default function Admin() {
           </div>
         </div>
         <div className="admin-contain-content">
-          {selected === 1 ? <Setting /> : ""}
-          {selected === 2 ? <Users datas={datas}/> : ""}
+          {selected === 2 ? <Users /> : ""}
+          {selected === 3 ? <Book control={"admin"}/> : ""}
         </div>
       </div>
     </div>

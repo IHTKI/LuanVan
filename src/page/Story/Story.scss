@@ -103,9 +103,9 @@
               }
             }
             ._story-rate {
-                display: flex;
-                margin-bottom: 20px;
-                margin-top: 20px;
+              display: flex;
+              margin-bottom: 20px;
+              margin-top: 20px;
               ._story-rate-icon {
                 height: 18px;
                 width: 18px;
@@ -115,10 +115,10 @@
               ._story-rate-point {
                 margin-left: 10px;
                 margin-top: 3px;
-                color: #666!important;
+                color: #666 !important;
                 span {
-                    color: black!important;
-                    font-weight: 500;
+                  color: black !important;
+                  font-weight: 500;
                 }
               }
             }
@@ -185,4 +185,17 @@
       }
     }
   }
+}
+.show {
+  background-color: #ed4259;
+  color: #fff!important;
+  pointer-events: none;
+}
+.star-active {
+  color: #ffc000!important;
+}
+.check-active {
+  background-color: #666;
+  color: #fff!important;
+  //pointer-events: none;
 }

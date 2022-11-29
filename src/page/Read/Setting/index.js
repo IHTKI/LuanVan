@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Setting.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -18,8 +18,14 @@ import {
   AiOutlineFontSize,
 } from "react-icons/ai";
 import { FaTextHeight } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import AudioPlayer from "react-h5-audio-player";
+import "react-h5-audio-player/lib/styles.css";
+
 export default function Setting(props) {
   const [select, SetSelect] = useState(0);
+  const [audio, setAudio] = useState();
   const handleChange = (number) => {
     if (select === 0 || select !== number) {
       SetSelect(number);
@@ -33,7 +39,11 @@ export default function Setting(props) {
     handleChangeFont,
     handleChangeFontSize,
     settingReading,
-    handleChangeLineHeight
+    handleChangeLineHeight,
+    id,
+    chapter,
+    chapContain,
+    chapTotal,
   } = props;
   //console.log(settingReading.fontSize);
   const handleAdd = () => {
@@ -46,14 +56,61 @@ export default function Setting(props) {
   };
   const handleSubLineHeight = () => {
     const value = settingReading.lineHeight;
-    const number = (value - 0.1);
+    const number = value - 0.1;
     handleChangeLineHeight(number);
-  }
+  };
   const handleAddLineHeight = () => {
     const value = settingReading.lineHeight;
-    const number = (value + 0.1);
+    const number = value + 0.1;
     handleChangeLineHeight(number);
-  }
+  };
+  const nextChapURL = `/story/id:${id.slice(3)}/chapter:${
+    Number(chapter.slice(8)) + 1
+  }`;
+  const preChapURL = `/story/id:${id.slice(3)}/chapter:${
+    Number(chapter.slice(8)) - 1
+  }`;
+
+  const handleNextClick = () => {
+    
+  };
+
+  const handleAudio = () => {
+    //console.log(1);
+    const data = {
+      text: "- Be be…be be…be be… Từng tiếng người nhái giọng con dê vang vọng quanh quẩn trong dãy núi vốn dĩ yên tĩnh.Lý Thất Dạ trèo lên trên núi, gió ban đêm thổi vừa mạnh vừa lạnh, nhưng lúc này nó lo lắng đến toát mồ hôi ướt đẫm cả người. Một đứa bé ở độ tuổi mười ba như Lý Thất Dạ, dùng tay chân một mình trèo lên dãy núi, quang cảnh đó giữa màn đêm toát ra một nét rất quái dị, khiến người ta sởn hết cả gai ốc nếu như được chứng kiến.Mặc dù màn đêm tĩnh lặng rất đáng sợ, nhưng trong lòng của Lý Thất Dạ lại nóng như lửa đốt.",
+    };
+
+    const headers = {
+      "api-key": "Khxxxr1fkbVghS0r1yZ6s1VezOoA5EQZ",
+      voice: "banmai",
+    };
+    axios
+      .post("https://api.fpt.ai/hmi/tts/v5", data, {
+        headers: headers,
+      })
+      .then((res) => {
+        //console.log(res.data);
+        setAudio(res.data.async);
+      });
+  };
+  useEffect(() => {
+    //console.log(1)
+    const data = {
+      chapter: chapter.slice(8),
+      idStory: id.slice(3),
+      idReader: localStorage.getItem("readerId"),
+    };
+    //console.log(data)
+    const URL = "http://localhost:8000/history/change";
+    axios.post(URL, data).then((res) => {
+      console.log(res.data);
+    });
+    //console.log(localStorage.getItem("chapter"));
+  }, [chapter]);
+
+  //console.log(Number(chapter.slice(8)) === chapTotal);
+
   return (
     <div>
       <div className="read-btn-ul">
@@ -63,18 +120,33 @@ export default function Setting(props) {
         <div className="read-btn-li">
           <FontAwesomeIcon icon={faGear} onClick={() => handleChange(2)} />
         </div>
-        <div className="read-btn-li">
+        <Link
+          to={nextChapURL}
+          className={
+            Number(chapter.slice(8)) === chapTotal
+              ? "read-btn-li block-active"
+              : "read-btn-li"
+          }
+          onClick={handleNextClick}
+        >
           <FontAwesomeIcon
             icon={faCircleRight}
             onClick={() => handleChange(3)}
           />
-        </div>
-        <div className="read-btn-li">
+        </Link>
+        <Link
+          to={preChapURL}
+          className={
+            Number(chapter.slice(8)) === 1
+              ? "read-btn-li block-active"
+              : "read-btn-li"
+          }
+        >
           <FontAwesomeIcon
             icon={faCircleLeft}
             onClick={() => handleChange(4)}
           />
-        </div>
+        </Link>
         <div className="read-btn-li">
           <FontAwesomeIcon icon={faBookmark} onClick={() => handleChange(5)} />
         </div>
@@ -207,12 +279,23 @@ export default function Setting(props) {
               <btn className="_btn" onClick={handleSubLineHeight}>
                 <AiOutlineMinusCircle className="_icon" />
               </btn>
-              <div className="_text">{(settingReading.lineHeight).toFixed(1)}</div>
+              <div className="_text">
+                {settingReading.lineHeight.toFixed(1)}
+              </div>
               <btn className="_btn" onClick={handleAddLineHeight}>
                 <AiOutlinePlusCircle className="_icon" />
               </btn>
             </div>
           </div>
+        </div>
+        <div className={select === 6 ? "read-audio activity" : "read-audio"}>
+          a
+          <AudioPlayer
+            autoPlay
+            src={audio}
+            //onPlay={(e) => console.log("onPlay")}
+            // other props here
+          />
         </div>
       </div>
     </div>

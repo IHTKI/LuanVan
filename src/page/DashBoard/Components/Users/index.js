@@ -3,13 +3,11 @@ import "./Users.scss";
 import { ImCross } from "react-icons/im";
 import Items from "../Items";
 import ReactPaginate from "react-paginate";
-import AddUser from "../AddUser";
 
 export default function Users(props) {
   const { datas } = props;
   const pagination = useRef();
   const [goTo, setGoTo] = useState(1);
-  const [hide, setHide] = useState(false);
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
@@ -43,9 +41,6 @@ export default function Users(props) {
     console.log(id);
   };
 
-  const handleSetHide = (value) => {
-    setHide(value);
-  }
 
   return (
     <div className="users__wrap">
@@ -68,7 +63,7 @@ export default function Users(props) {
               <option value="mango">Mango</option>
             </select>
           </div>
-          <div className="search__add" onClick={()=>setHide(true)}>+ Add User</div>
+          <div className="search__add">+ Add User</div>
         </div>
         <div className="users__result">
           <div className="result__header">
@@ -136,7 +131,7 @@ export default function Users(props) {
           </div>
         </div>
       </div>
-      <div className="addUser__wrapper">{hide ? <AddUser handleSetHide={handleSetHide}/> : ""}</div>
+      
     </div>
   );
 }

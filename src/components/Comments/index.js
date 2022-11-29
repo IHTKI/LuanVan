@@ -1,11 +1,10 @@
-import React, { useEffect, useRef, useState, } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactPaginate from "react-paginate";
 import Comment from "./Comment";
 import "./Comments.scss";
 export default function Comments(props) {
-
-  const {datas,hide} = props;
-  
+  const { datas, hide } = props;
+ 
   const pagination = useRef();
   const [goTo, setGoTo] = useState(1);
   const [currentItems, setCurrentItems] = useState([]);
@@ -14,10 +13,12 @@ export default function Comments(props) {
   const itemsPerPage = 5;
 
   useEffect(() => {
-    const endOffset = itemOffset + itemsPerPage;
-    setCurrentItems(datas.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(datas.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage, datas]);
+      if(datas !== "") {
+      const endOffset = itemOffset + itemsPerPage;
+      setCurrentItems(datas.slice(itemOffset, endOffset));
+      setPageCount(Math.ceil(datas.length / itemsPerPage));
+      }
+  }, [itemOffset, itemsPerPage,datas]);
 
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % datas.length;
@@ -37,11 +38,13 @@ export default function Comments(props) {
     }
   };
 
+  //console.log(datas)
+
   return (
     <div className="cmts-wrapper">
-      {datas.length !== 0
+      {datas.length !== 0 && currentItems !== ""
         ? currentItems.map((data) => {
-            return <Comment data={data} hide={hide}/>;
+            return <Comment data={data} hide={hide} />;
           })
         : ""}
 

@@ -3,33 +3,43 @@ import {
   faArrowDownShortWide,
   faArrowUpShortWide,
 } from "@fortawesome/free-solid-svg-icons";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./ListChap.scss";
-export default function ListChap() {
+import axios from "axios";
+import { Link } from "react-router-dom";
+export default function ListChap(props) {
+  const { idStory } = props;
+  const [data, setData] = useState("");
+
+  useEffect(() => {
+    const URL = "http://localhost:8000/chap/get/" + idStory.slice(3);
+    axios.get(URL).then((res) => {
+      setData(res.data);
+    });
+  }, [idStory]);
+
+  //console.log(data);
+
   return (
     <div className="listChap-wrapper">
       <div className="listChap-header">
         <div className="listChap-title">
           Tổng Số Chương:
-          <span>1223 Chương</span>
+          <span>{data && data.length ? data.length : ""}</span>
         </div>
         <div className="listChap-icon">
           <FontAwesomeIcon icon={faArrowDownShortWide} className="_icon" />
         </div>
       </div>
       <div className="listChap-ul">
-        <div className="listChap-li">
-          <div className="li-name">Chương 01: Tám Trăm Năm Sau</div>
-        </div>
-        <div className="listChap-li">
-          <div className="li-name">Chương 02: Mở Ra Thần Võ Ấn Ký</div>
-        </div>
-        <div className="listChap-li">
-          <div className="li-name">Chương 03: Hoàng Cực Cảnh</div>
-        </div>
-        <div className="listChap-li">
-          <div className="li-name">Chương 04: Thời Không Bí Điển</div>
-        </div>
+        {data !== "" &&
+          data.map((item) => {
+            return (
+              <Link to={`/story/id:${item.idStory._id}/chapter:${item.chapNumber}`} className="listChap-li">
+                <div className="li-name">Chương {item.chapNumber}: {item.chapName}</div>
+              </Link>
+            );
+          })}
       </div>
     </div>
   );

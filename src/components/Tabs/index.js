@@ -5,12 +5,13 @@ import ListChap from "./ListChap";
 import Rate from "./Rate";
 import "./Tabs.scss";
 
-export default function Tabs() {
+export default function Tabs(props) {
   const [activity, setActivity] = useState(1);
-
+  const {idStory} = props;
   const handleClick = (index) => {
     setActivity(index);
   };
+
   return (
     <div className="tabs-wrapper">
       <div className="bloc-tabs">
@@ -41,16 +42,16 @@ export default function Tabs() {
       </div>
       <div className="contain-tabs">
         <div className={activity === 1 ? "activity-contain" : "tab-hide"}>
-          <Introduce />
+          <Introduce idStory={idStory}/>
         </div>
         <div className={activity === 2 ? "activity-contain" : "tab-hide"}>
-          <Rate />
+          <Rate idStory={idStory}/>
         </div>
         <div className={activity === 3 ? "activity-contain" : "tab-hide"}>
-          <ListChap />
+          <ListChap idStory={idStory}/>
         </div>
         <div className={activity === 4 ? "activity-contain" : "tab-hide"}>
-          <CommentStory />
+          <CommentStory idStory={idStory}/>
         </div>
       </div>
     </div>

@@ -3,10 +3,10 @@ import "./AddUser.scss";
 import { MdFileUpload } from 'react-icons/md';
 
 export default function AddUser(props) {
-  const {handleSetHide} = props;
+  
   return (
     <div className="addUser_wrap">
-      <div className="addUser__mask" onClick={() => handleSetHide(false)}></div>
+      <div className="addUser__mask"></div>
       <div className="addUser__contain">
         <div className="addUser__header">
           <span>Add New User</span>
@@ -19,7 +19,7 @@ export default function AddUser(props) {
               <span>User Image</span>
 
               <div className="form-right">
-                <label for="upload-file">
+                <label htmlFor="upload-file">
                   <MdFileUpload className="_icon" />
                   <span>Upload File</span>
                 </label>

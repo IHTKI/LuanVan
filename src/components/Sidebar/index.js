@@ -10,10 +10,12 @@ import Tippy from "@tippyjs/react/headless";
 import Wrapper from "../Wrapper";
 import Menu from "./MenuCategory";
 import UserAccount from "./UserAccount";
+import { useNavigate } from "react-router-dom";
 
 export default function Sidebar(props) {
-  const [user, setUser] = useState("true");
+  const [readerId, setReaderId] = useState("");
   const { visibleS } = props;
+  const navigation = useNavigate();
 
   const [status, setStatus] = useState(true);
   const myFunction = () => {
@@ -24,10 +26,30 @@ export default function Sidebar(props) {
     }
   };
 
+  useEffect(() => {
+    const id = localStorage.getItem("readerId");
+    //console.log(id)
+    if (id !== null) {
+      setReaderId(id);
+    }else {
+      setReaderId("");
+    }
+  }, []);
+
+
   window.onscroll = () => {
     myFunction();
   };
 
+  const handleUpStory = () => {
+    navigation("/login");
+  };
+  const handleFilter = () => {
+    navigation("/story");
+  };
+  const handleReaderLogin = () => {
+    navigation("/reader/login");
+  };
   return (
     <div className="sidebar-wrapper">
       <div className="sidebar-container">
@@ -74,20 +96,24 @@ export default function Sidebar(props) {
             </div>
           )}
 
-          <div className="sidebar-container-filter display-flex hover-eff">
+          <div
+            className="sidebar-container-filter display-flex hover-eff"
+            onClick={handleFilter}
+          >
             Lọc Truyện
           </div>
-          <div className="sidebar-container-rank display-flex hover-eff">
-            Bảng Xếp Hạng
-          </div>
+          
         </div>
 
         <div className="sidebar-container-collumn">
-          <div className="sidebar-container-up display-flex hover-eff">
+          <div
+            className="sidebar-container-up display-flex hover-eff"
+            onClick={handleUpStory}
+          >
             Đăng Truyện
           </div>
 
-          {user ? (
+          {readerId !== "" ? (
             <Tippy
               interactive
               placement="bottom-start"
@@ -105,7 +131,10 @@ export default function Sidebar(props) {
               </div>
             </Tippy>
           ) : (
-            <div className="sidebar-container-login display-flex hover-eff">
+            <div
+              className="sidebar-container-login display-flex hover-eff"
+              onClick={handleReaderLogin}
+            >
               <FontAwesomeIcon
                 icon={faRightToBracket}
                 className="sidebar-icon"

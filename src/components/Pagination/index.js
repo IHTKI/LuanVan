@@ -5,6 +5,7 @@ import ReactPaginate from "react-paginate";
 
 export default function Panagition(props) {
   const { datas, component } = props;
+  console.log(datas)
   const Page = component;
   const pagination = useRef();
   const [goTo, setGoTo] = useState(1);

@@ -23,8 +23,12 @@
   }
   .user-account-select {
     padding: 10px 0;
+
+    //width: 100%;
     .user-account-item {
       font-size: 15px;
+      display: block;
+      width: 200px;
       padding: 10px 26px;
       font-weight: 400;
       .user-icon {
@@ -34,6 +38,7 @@
       &:hover {
         background-color: #e6e6e6;
         cursor: pointer;
+        width: 100%;
       }
     }
   }

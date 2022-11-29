@@ -1,4 +1,6 @@
 .cmt-story-wrapper {
+  display: flex;
+  justify-content: space-between;
   .cmt-story-left {
     width: 70%;
     .cmt-story-header {
@@ -70,5 +72,90 @@
         }
       }
     }
+    .cmt-story-cmt {
+      
+      .cmt_story_wrap {
+        display: flex;
+        border-bottom: 1px solid #eee!important;
+        margin-bottom: 24px;
+        .cmt_story_img {
+          width: 10%;
+          img {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+          }
+        }
+        .cmt_story_content {
+          width: 90%;
+          position: relative;
+          .cmt_story_userName {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 12px;
+            width: 100%;
+          }
+          .cmt_story_chapter {
+            font-size: 14px;
+            width: 100%;
+            font-weight: 300;
+            margin-bottom: 12px;
+          }
+          .cmt_story_contain {
+            font-size: 15px;
+            font-weight: 400;
+            margin-bottom: 24px;
+          }
+          .cmt_story_like {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .__icon__like {
+              height: 22px;
+              width: 22px;
+              &:hover {
+                cursor: pointer;
+              }
+            }
+            span {
+              font-size: 18px;
+              font-weight: 500;
+              margin-left: 12px;
+              margin-top: 2px;
+            }
+          }
+        }
+      }
+
+    }
   }
+  .cmt-story-right {
+    width: 28%;
+    .rate-right-note {
+      margin-top: 24px;
+      padding: 16px;
+      background-color: #f7f5f0;
+      border-radius: 8px;
+      .note-header {
+        font-size: 16px;
+        font-weight: 500;
+        color: #b78a28;
+        line-height: 1.5;
+        margin-bottom: 24px;
+      }
+      .note-li {
+        line-height: 1.5;
+        margin-bottom: 16px;
+        font-size: 15px;
+        font-weight: 400;
+        color: #b78a28;
+      }
+    }
+  }
+}
+.like-active {
+  color: blue;
 }

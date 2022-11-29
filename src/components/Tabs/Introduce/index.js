@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Introduce.scss";
 import chap from "~/assets/chap.png";
 import book from "~/assets/bookcount.png";
@@ -6,8 +6,10 @@ import level from "~/assets/level.png";
 import Slider from "react-slick";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
-export default function Introduce() {
+export default function Introduce(props) {
   const datas = [
     {
       storyImg:
@@ -66,136 +68,126 @@ export default function Introduce() {
     autoplay: true,
     autoplaySpeed: 2000,
   };
+  const { idStory } = props;
+  const [data, setData] = useState("");
+  const [sameAuthor, setSameAuthor] = useState("");
+  const [sameManager, setSameManager] = useState("");
+  const [chapTotal, setChapTotal] = useState(0);
+
+  useEffect(() => {
+    const URL = "http://localhost:8000/story/chap/" + idStory.slice(3);
+    axios.get(URL).then((res) => {
+      //console.log(res.data.sameAuthor);
+      setData(res.data.story[0]);
+      setSameAuthor(res.data.sameAuthor);
+      setSameManager(res.data.sameManager);
+      handleTotal(res.data.sameManager);
+    });
+  }, [idStory]);
+
+  const handleTotal = (array) => {
+    var total = array.reduce(function (accumulator, data) {
+      return accumulator + data.chapCount;
+    }, 0);
+    setChapTotal(total);
+  };
 
   return (
     <div className="introduce-tab">
       <div className="contain-tab-left">
         <div className="left-contain">
-          <p>
-            .....
-            <br />
-            <br />
-            <br />
-            800 năm trước, Minh Đế chi tử Trương Nhược Trần, bị vị hôn thê của
-            hắn Trì Dao công chúa giết chết, thiên kiêu một đời, liền như vậy
-            ngã xuống. Tám trăm năm sau, Trương Nhược Trần một lần nữa sống lại,
-            lại phát hiện vị hôn thê đã từng giết chết hắn, đã thống nhất Côn
-            Lôn Giới, mở ra Đệ Nhất Trung Ương đế quốc, được xưng "Trì Dao Nữ
-            Hoàng" . <br />
-            <br />
-            "&nbsp;" Trì Dao Nữ Hoàng —— thống ngự thiên hạ, uy lâm bát phương;
-            thanh xuân mãi mãi, bất tử bất diệt. Trương Nhược Trần đứng ở Chư
-            Hoàng Từ Đường ở ngoài, nhìn Trì Dao Nữ Hoàng tượng thần, trong lòng
-            bốc cháy lên hừng hực cừu hận liệt diễm, "Đợi ta trùng tu mười ba
-            năm, dám gọi Nữ Hoàng dưới Hoàng Tuyền" .{" "}
-          </p>
-          <br />
-          <br />
-          TG: Thần Ma Thiên Tôn, Linh Chu. TG đổi tên.
-        </div>
-        <div className="left-prize">
-          Thành Tích :
-          <img
-            src="https://qdfepccdn.qidian.com/www.qidian.com/images/book/badges/yp_s1_gg_2022.png"
-            alt=""
-          />
-          <img
-            src="//qdfepccdn.qidian.com/www.qidian.com/images/book/badges/yp_s2_gg_2022.png"
-            alt=""
-          />
-          <img
-            src="https://qdfepccdn.qidian.com/www.qidian.com/images/book/badges/yp_s1_gg_2022.png"
-            alt=""
-          />
+          {data && data.description ? data.description : ""}
         </div>
         <div className="left-newChap">
           Chương Mới :
           <div className="list-newChap">
-            <div className="list-newChap-li">
-              Chương 3582: Phỏng Đoán
-              <span>21/10/2022</span>
-            </div>
-            <div className="list-newChap-li">
-              Chương 3582: Phỏng Đoán
-              <span>21/10/2022</span>
-            </div>
-            <div className="list-newChap-li">
-              Chương 3582: Phỏng Đoán
-              <span>21/10/2022</span>
-            </div>
-            <div className="list-newChap-li">
-              Chương 3582: Phỏng Đoán
-              <span>21/10/2022</span>
-            </div>
-            <div className="list-newChap-li">
-              Chương 3582: Phỏng Đoán
-              <span>21/10/2022</span>
-            </div>
+            {data && data.chap.length >= 5 ? (
+              <div>
+                <div className="list-newChap-li">
+                  Chương{" "}
+                  {data && data.chap[data.chap.length - 1].chapNumber
+                    ? data.chap[data.chap.length - 1].chapNumber
+                    : ""}
+                  : 
+                  {data && data.chap[data.chap.length - 1].chapName
+                    ? data.chap[data.chap.length - 1].chapName
+                    : ""}
+                </div>
+                <div className="list-newChap-li">
+                  Chương{" "}
+                  {data && data.chap[data.chap.length - 2].chapNumber
+                    ? data.chap[data.chap.length - 2].chapNumber
+                    : ""}
+                  : 
+                  {data && data.chap[data.chap.length - 2].chapName
+                    ? data.chap[data.chap.length - 2].chapName
+                    : ""}
+                </div>
+                <div className="list-newChap-li">
+                  Chương{" "}
+                  {data && data.chap[data.chap.length - 3].chapNumber
+                    ? data.chap[data.chap.length - 3].chapNumber
+                    : ""}
+                  : 
+                  {data && data.chap[data.chap.length - 3].chapName
+                    ? data.chap[data.chap.length - 3].chapName
+                    : ""}
+                </div>
+                <div className="list-newChap-li">
+                  Chương{" "}
+                  {data && data.chap[data.chap.length - 4].chapNumber
+                    ? data.chap[data.chap.length - 4].chapNumber
+                    : ""}
+                  : 
+                  {data && data.chap[data.chap.length - 4].chapName
+                    ? data.chap[data.chap.length - 4].chapName
+                    : ""}
+                </div>
+                <div className="list-newChap-li">
+                  Chương{" "}
+                  {data && data.chap[data.chap.length - 5].chapNumber
+                    ? data.chap[data.chap.length - 5].chapNumber
+                    : ""}
+                  : 
+                  {data && data.chap[data.chap.length - 5].chapName
+                    ? data.chap[data.chap.length - 5].chapName
+                    : ""}
+                </div>{" "}
+              </div>
+            ) : (
+              <div className="list-newChap-li">
+                  Chương{" "}
+                  {data && data.chap[data.chap.length - 1].chapNumber
+                    ? data.chap[data.chap.length - 1].chapNumber
+                    : ""}
+                  : 
+                  {data && data.chap[data.chap.length - 1].chapName
+                    ? data.chap[data.chap.length - 1].chapName
+                    : ""}
+                </div>
+            )}
           </div>
         </div>
         <div className="left-sameAuthor">
           Cùng Tác Giả:
           <div className="sameAuthor-list">
-            <div className="sameAuthor-li">
-              <div className="li-wrapper">
-                <img
-                  src="https://static.cdnno.com/poster/quang-am-chi-ngoai/150.jpg?1655013821"
-                  alt=""
-                />
-                <div className="sameAuthor-contain">
-                  <div className="sameAuthor-name">Quan Âm Chi Ngoại</div>
-                  <span>
-                    <FontAwesomeIcon icon={faBook} className="_icon"/>
-                    Tiên Hiệp
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="sameAuthor-li">
-              <div className="li-wrapper">
-                <img
-                  src="https://static.cdnno.com/poster/quang-am-chi-ngoai/150.jpg?1655013821"
-                  alt=""
-                />
-                <div className="sameAuthor-contain">
-                  <div className="sameAuthor-name">Quan Âm Chi Ngoại</div>
-                  <span>
-                    <FontAwesomeIcon icon={faBook} className="_icon"/>
-                    Tiên Hiệp
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="sameAuthor-li">
-              <div className="li-wrapper">
-                <img
-                  src="https://static.cdnno.com/poster/quang-am-chi-ngoai/150.jpg?1655013821"
-                  alt=""
-                />
-                <div className="sameAuthor-contain">
-                  <div className="sameAuthor-name">Quan Âm Chi Ngoại</div>
-                  <span>
-                    <FontAwesomeIcon icon={faBook} className="_icon"/>
-                    Tiên Hiệp
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="sameAuthor-li">
-              <div className="li-wrapper">
-                <img
-                  src="https://static.cdnno.com/poster/quang-am-chi-ngoai/150.jpg?1655013821"
-                  alt=""
-                />
-                <div className="sameAuthor-contain">
-                  <div className="sameAuthor-name">Quan Âm Chi Ngoại</div>
-                  <span>
-                    <FontAwesomeIcon icon={faBook} className="_icon"/>
-                    Tiên Hiệp
-                  </span>
-                </div>
-              </div>
-            </div>
+            {sameAuthor !== "" &&
+              sameAuthor.map((item) => {
+                return (
+                  <Link to={`/story/id:${item._id}`} className="sameAuthor-li">
+                    <div className="li-wrapper">
+                      <img src={item.img} alt="" />
+                      <div className="sameAuthor-contain">
+                        <div className="sameAuthor-name">{item.nameStory}</div>
+                        <span>
+                          <FontAwesomeIcon icon={faBook} className="_icon" />
+                          {item.genre}
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
           </div>
         </div>
       </div>
@@ -205,44 +197,53 @@ export default function Introduce() {
           <div className="cvt-header">
             <img
               className="cvt-img"
-              src="https://facepic.qidian.com/qd_face/349573/a9639927/0"
+              src={
+                sameManager && sameManager[0].idManager
+                  ? sameManager[0].idManager.avatar
+                  : ""
+              }
               alt=""
             />
-            <span className="cvt-rank">Bạch Kim</span>
+            <span className="cvt-rank"></span>
           </div>
-          <div className="cvt-name">Khiêm Siu Đẹp Trai</div>
+          <div className="cvt-name">
+            {sameManager && sameManager[0].idManager
+              ? sameManager[0].idManager.nameManager
+              : ""}
+          </div>
           <div className="cvt-inf">
             <div className="cvt-inf-book">
               <img src={book} alt="" />
               <span className="inf-book-name">Số Truyện</span>
-              <span className="inf-book-count">199</span>
+              <span className="inf-book-count">
+                {sameManager ? sameManager.length : ""}
+              </span>
             </div>
             <div className="cvt-inf-book">
               <img src={chap} alt="" />
               <span className="inf-book-name">Số Chương</span>
-              <span className="inf-book-count">146.5k</span>
+              <span className="inf-book-count">{chapTotal}</span>
             </div>
             <div className="cvt-inf-book">
               <img src={level} alt="" />
               <span className="inf-book-name">Cấp</span>
-              <span className="inf-book-count">4</span>
+              <span className="inf-book-count">1</span>
             </div>
           </div>
           <hr></hr>
           <div className="cvt-book-slide">
             <Slider {...settings}>
-              {datas.map((data) => {
-                return (
-                  <div className="_book-slide">
-                    <img src={data.storyImg} alt="" />
-                    <div className="_book-slide-name">{data.storyName}</div>
-                    <div className="_book-slide-des">
-                      {data.storyDescription}
-                    </div>
-                    <div className="_book-slide-genre">{data.storyGenre}</div>
-                  </div>
-                );
-              })}
+              {sameManager &&
+                sameManager.map((data) => {
+                  return (
+                    <Link to={`/story/id:${data._id}`} className="_book-slide">
+                      <img src={data.img} alt="" />
+                      <div className="_book-slide-name">{data.nameStory}</div>
+                      <div className="_book-slide-des">{data.description}</div>
+                      <div className="_book-slide-genre">{data.genre}</div>
+                    </Link>
+                  );
+                })}
             </Slider>
           </div>
         </div>

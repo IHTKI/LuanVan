@@ -1,0 +1,47 @@
+._wrap {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 15;
+    display: flex;
+  
+    .__contain {
+      width: 50%;
+      background-color: #fff;
+      position: relative;
+      
+        
+      .__bookName {
+        padding: 24px;
+        color: #333;
+        font-size: 20px;
+        text-align: center;
+      }
+      .__bookImg {
+        text-align: center;
+        
+        img {
+            width: 120px;
+            height: auto;
+        }
+      }
+
+      .__bookAuthor,.__bookGenre {
+        //text-align: center;
+        padding: 24px 24px 24px 100px;
+      }
+      .__bookDes {
+        padding: 24px;
+        line-height: 1.5;
+      }
+    }
+    .__mask {
+      height: 100vh;
+      width: 50%;
+      opacity: 0.3;
+      background-color: rgba(0,0,0,0.5);
+    }
+  }
+  

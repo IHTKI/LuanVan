@@ -3,34 +3,24 @@ import { faPaperPlane, faStar } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useRef, useState } from "react";
 import "./Rate.scss";
 import Comments from "~/components/Comments";
-export default function Rate() {
-  const datas = [
-    {
-      id: 1,
-      cmt: "Truyện hay vcl",
-    },
-    {
-      id: 2,
-      cmt: "Truyện hay",
-    },
-    {
-      id: 3,
-      cmt: "Truyện siêu hay vcl",
-    },
-    {
-      id: 4,
-      cmt: "Truyện dở vcl",
-    },
-    {
-      id: 5,
-      cmt: "Truyện hay quá",
-    },
-    {
-      id: 6,
-      cmt: "Truyện hay vãi đạn",
-    },
-  ];
-  const [point, setPoint] = useState(0);
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+export default function Rate(props) {
+  const { idStory } = props;
+  const navigation = useNavigate();
+
+  const [datas, setDatas] = useState("");
+
+  const [rateChar, setRateChar] = useState(0);
+  const [rateWorld, setRateWorld] = useState(0);
+  const [rateContain, setRateContain] = useState(0);
+
+  const [pointTotal, setPointTotal] = useState(0);
+  const [pointChar, setPointChar] = useState(0);
+  const [pointWorld, setPointWorld] = useState(0);
+  const [pointContain, setPointContain] = useState(0);
+
   const [textArea, setTextArea] = useState("");
   const textAreaRef = useRef(null);
   const resizeTextArea = () => {
@@ -39,9 +29,84 @@ export default function Rate() {
   };
   useEffect(resizeTextArea, [textArea]);
 
-  const handleSubmit = () => {
-    setTextArea("");
+  useEffect(() => {
+    const URL = "http://localhost:8000/rate/get";
+    const data = {
+      idStory: idStory.slice(3),
+      idReader: localStorage.getItem("readerId"),
+    };
+
+    axios.post(URL, data).then((res) => {
+      //console.log(res.data);
+      setDatas(res.data);
+      handleData(res.data);
+    });
+  }, [idStory]);
+  //console.log(datas)
+  
+  const handleData = (array) => {
+    //console.log("123123123")
+    const idReader = localStorage.getItem("readerId");
+    const rateReader = array.filter((item) => {
+      return item.idReader._id === idReader;
+    });
+    setTextArea(rateReader[0].contain);
+    setRateChar(rateReader[0].rateChar);
+    setRateWorld(rateReader[0].rateWorld);
+    setRateContain(rateReader[0].rateContain);
+
+    const pointChar = array.reduce(function (accumulator, data) {
+      return accumulator + data.rateChar;
+    }, 0);
+    setPointChar((pointChar / array.length).toFixed(1));
+    const pointWorld = array.reduce(function (accumulator, data) {
+      return accumulator + data.rateWorld;
+    }, 0);
+    setPointWorld((pointWorld / array.length).toFixed(1));
+    const pointContain = array.reduce(function (accumulator, data) {
+      return accumulator + data.rateContain;
+    }, 0);
+    setPointContain((pointContain / array.length).toFixed(1));
+
+    const pointTotal =
+      Number(
+        pointChar / array.length +
+          pointContain / array.length +
+          pointWorld / array.length
+      ) / 3;
+
+    setPointTotal((pointTotal).toFixed(1));
+    //console.log(pointTotal)
   };
+
+  //console.log(localStorage.getItem("chapter"))
+
+  const handleSubmit = () => {
+    //setTextArea("");
+    if (localStorage.getItem("readerId") !== null) {
+      if (textArea !== "") {
+        const newRate = {
+          idStory: idStory.slice(3),
+          idReader: localStorage.getItem("readerId"),
+          contain: textArea,
+          rateChar: rateChar,
+          rateContain: rateContain,
+          rateWorld: rateWorld,
+        };
+
+        axios.post("http://localhost:8000/rate/add", newRate).then((res) => {
+          alert(res.data);
+          //alert("Thanh cong");
+          //setTextArea("");
+        });
+      } else {
+        alert("Nhap noi dung");
+      }
+    } else {
+      navigation("/reader/login");
+    }
+  };
+
 
   return (
     <div className="rate-wrapper">
@@ -55,11 +120,11 @@ export default function Rate() {
                 min="0"
                 max="5"
                 step={0.5}
-                value={point}
-                onChange={(e) => setPoint(e.target.value)}
+                value={rateChar}
+                onChange={(e) => setRateChar(e.target.value)}
                 className="_range"
               />
-              <div className="_point">{point}</div>
+              <div className="_point">{rateChar}</div>
             </div>
 
             <div className="box-rating-li">
@@ -69,11 +134,11 @@ export default function Rate() {
                 min="0"
                 max="5"
                 step={0.5}
-                value={point}
-                onChange={(e) => setPoint(e.target.value)}
+                value={rateContain}
+                onChange={(e) => setRateContain(e.target.value)}
                 className="_range"
               />
-              <div className="_point">{point}</div>
+              <div className="_point">{rateContain}</div>
             </div>
 
             <div className="box-rating-li">
@@ -83,11 +148,11 @@ export default function Rate() {
                 min="0"
                 max="5"
                 step={0.5}
-                value={point}
-                onChange={(e) => setPoint(e.target.value)}
+                value={rateWorld}
+                onChange={(e) => setRateWorld(e.target.value)}
                 className="_range"
               />
-              <div className="_point">{point}</div>
+              <div className="_point">{rateWorld}</div>
             </div>
           </div>
           <div className="box-textBox">
@@ -95,7 +160,7 @@ export default function Rate() {
               className="_textArea"
               placeholder="Đánh giá của bạn về truyện này là gì?"
               onChange={(e) => setTextArea(e.target.value)}
-              value={textArea}
+              value={textArea ? textArea : ""}
               ref={textAreaRef}
             />
             <button className="_btnSend" onClick={handleSubmit}>
@@ -104,82 +169,137 @@ export default function Rate() {
           </div>
         </div>
         <div className="rate-left-ul">
-          <div className="rate-option">
-            <select>
-              <option>Mới Nhất</option>
-              <option>Lượt Thích</option>
-            </select>
-          </div>
-          <Comments datas={datas}/>
+          <Comments datas={datas && datas !== "" ? datas : ""} />
         </div>
       </div>
       <div className="rate-right">
         <div className="rate-right-ul">
-
           <div className="rate-right-header">
-            <span className="_text">Đã có 6 lượt đánh giá</span>
+            <span className="_text">
+              Đã có {datas && datas.length ? datas.length : ""} lượt đánh giá
+            </span>
             <div className="_star">
-              <FontAwesomeIcon icon={faStar} className="star-active"/>
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
+              <FontAwesomeIcon
+                icon={faStar}
+                className={pointTotal >= 1 ? "star-active" : ""}
+              />
+              <FontAwesomeIcon
+                icon={faStar}
+                className={pointTotal >= 2 ? "star-active" : ""}
+              />
+              <FontAwesomeIcon
+                icon={faStar}
+                className={pointTotal >= 3 ? "star-active" : ""}
+              />
+              <FontAwesomeIcon
+                icon={faStar}
+                className={pointTotal >= 4 ? "star-active" : ""}
+              />
+              <FontAwesomeIcon
+                icon={faStar}
+                className={pointTotal >= 5 ? "star-active" : ""}
+              />
             </div>
-            <span className="_point">5</span>
+            <span className="_point">{pointTotal}</span>
           </div>
           <div className="rate-right-li">
             <span className="_text">Tính cánh nhân vật</span>
             <div className="_star">
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
+              <FontAwesomeIcon
+                icon={faStar}
+                className={pointTotal >= 1 ? "star-active" : ""}
+              />
+              <FontAwesomeIcon
+                icon={faStar}
+                className={pointTotal >= 2 ? "star-active" : ""}
+              />
+              <FontAwesomeIcon
+                icon={faStar}
+                className={pointTotal >= 3 ? "star-active" : ""}
+              />
+              <FontAwesomeIcon
+                icon={faStar}
+                className={pointTotal >= 4 ? "star-active" : ""}
+              />
+              <FontAwesomeIcon
+                icon={faStar}
+                className={pointTotal >= 5 ? "star-active" : ""}
+              />
             </div>
-            <span className="_point">5</span>
+            <span className="_point">{pointChar}</span>
           </div>
           <div className="rate-right-li">
             <span className="_text">Nội dung cốt truyện</span>
             <div className="_star">
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
+              <FontAwesomeIcon
+                icon={faStar}
+                className={pointTotal >= 1 ? "star-active" : ""}
+              />
+              <FontAwesomeIcon
+                icon={faStar}
+                className={pointTotal >= 2 ? "star-active" : ""}
+              />
+              <FontAwesomeIcon
+                icon={faStar}
+                className={pointTotal >= 3 ? "star-active" : ""}
+              />
+              <FontAwesomeIcon
+                icon={faStar}
+                className={pointTotal >= 4 ? "star-active" : ""}
+              />
+              <FontAwesomeIcon
+                icon={faStar}
+                className={pointTotal >= 5 ? "star-active" : ""}
+              />
             </div>
-            <span className="_point">5</span>
+            <span className="_point">{pointContain}</span>
           </div>
           <div className="rate-right-li">
             <span className="_text">Bối cảnh thế giới</span>
             <div className="_star">
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
+              <FontAwesomeIcon
+                icon={faStar}
+                className={pointTotal >= 1 ? "star-active" : ""}
+              />
+              <FontAwesomeIcon
+                icon={faStar}
+                className={pointTotal >= 2 ? "star-active" : ""}
+              />
+              <FontAwesomeIcon
+                icon={faStar}
+                className={pointTotal >= 3 ? "star-active" : ""}
+              />
+              <FontAwesomeIcon
+                icon={faStar}
+                className={pointTotal >= 4 ? "star-active" : ""}
+              />
+              <FontAwesomeIcon
+                icon={faStar}
+                className={pointTotal >= 5 ? "star-active" : ""}
+              />
             </div>
-            <span className="_point">5</span>
+            <span className="_point">{pointWorld}</span>
           </div>
         </div>
         <div className="rate-right-note">
-          <div className="note-header">
-            Lưu ý khi đánh giá:
-          </div>
+          <div className="note-header">Lưu ý khi đánh giá:</div>
           <div className="note-ul">
             <div className="note-li">
-            1. Không được dẫn link hoặc nhắc đến website khác
+              1. Không được dẫn link hoặc nhắc đến website khác
             </div>
             <div className="note-li">
-            2. Không được có những từ ngữ gay gắt, đả kích, xúc phạm người khác
+              2. Không được có những từ ngữ gay gắt, đả kích, xúc phạm người
+              khác
             </div>
             <div className="note-li">
-            3. Đánh giá hoặc bình luận không liên quan tới truyện sẽ bị xóa
+              3. Đánh giá hoặc bình luận không liên quan tới truyện sẽ bị xóa
             </div>
             <div className="note-li">
-            4. Đánh giá hoặc bình luận chê truyện một cách chung chung không mang lại giá trị cho người đọc sẽ bị xóa
+              4. Đánh giá hoặc bình luận chê truyện một cách chung chung không
+              mang lại giá trị cho người đọc sẽ bị xóa
             </div>
             <div className="note-li">
-            5. Đánh giá có điểm số sai lệch với nội dung sẽ bị xóa
+              5. Đánh giá có điểm số sai lệch với nội dung sẽ bị xóa
             </div>
           </div>
         </div>

@@ -70,6 +70,8 @@ export default function Home() {
     },
   ];
 
+  
+
   return (
     <div className="home">
       <Header />
@@ -237,7 +239,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="chatbot">chatbot nè</div>
       </div>
       <Footer />
     </div>

@@ -40,11 +40,7 @@
         width: 84%;
         .list-newChap-li {
           margin-bottom: 12px;
-          span {
-            float: right;
-            right: 0;
-            pointer-events: none;
-          }
+          text-align: right;
           &:hover {
             cursor: pointer;
             color: #3f5a93;
